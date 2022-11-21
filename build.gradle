@@ -1,0 +1,61 @@
+plugins {
+    id "java-library"
+	id "maven-publish"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = "owo"
+version = "2.1.0"
+group = "io.github.maowimpl"
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+java {
+    withJavadocJar()
+	withSourcesJar()
+}
+
+jar {
+	from "LICENSE"
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+
+            pom {
+                name = "owo"
+                description = "Advanced Java OwOifier"
+                url = "https://github.com/Arc-blroth/MaowImpl-owo/"
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "https://opensource.org/licenses/MIT"
+                    }
+                }
+                developers {
+                    developer {
+                        name = "MaowImpl"
+                    }
+                    developer {
+                        name = "Arc'blroth"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git@github.com:Arc-blroth/MaowImpl-owo.git"
+                    developerConnection = "scm:git:git@github.com:Arc-blroth/MaowImpl-owo.git"
+                    url = "https://github.com/Arc-blroth/MaowImpl-owo/"
+                }
+            }
+		}
+	}
+
+	repositories {
+        mavenLocal()
+	}
+}
